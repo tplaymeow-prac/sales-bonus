@@ -1,3 +1,5 @@
+
+
 /**
  * Функция для расчета выручки
  * @param purchase запись о покупке
@@ -111,9 +113,15 @@ function analyzeSalesData(data, options) {
             data.products.map(product => [product.sku, product])
         );
         seller.top_products = [...seller.products_sold.entries()]
+            .sort((a, b) => b[1] - a[1])
             .slice(0, 10)
-            .map(([sku]) => {
-                return productsBySku.get(sku);
+            .map(([sku, quantity]) => {
+                const product = productsBySku.get(sku);
+
+                return {
+                    sku: product?.sku ?? sku,
+                    quantity
+                };
             });
     });
 

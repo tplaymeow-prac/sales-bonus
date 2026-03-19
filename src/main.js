@@ -1,5 +1,3 @@
-
-
 /**
  * Функция для расчета выручки
  * @param purchase запись о покупке
@@ -92,7 +90,7 @@ function analyzeSalesData(data, options) {
             if (!mappedData.get(record.seller_id).products_sold.has(item.sku)) {
                 mappedData.get(record.seller_id).products_sold.set(item.sku, 0);
             }
-            mappedData.get(record.seller_id).products_sold.set(item.sku, mappedData.get(record.seller_id).products_sold.get(item.sku) + 1);
+            mappedData.get(record.seller_id).products_sold.set(item.sku, mappedData.get(record.seller_id).products_sold.get(item.sku) + item.quantity);
         })
     })
 
